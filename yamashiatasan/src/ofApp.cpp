@@ -5,6 +5,11 @@ void ofApp::setup(){
     ofSetFrameRate(30);
     ofVec2f Init = ofVec2f(0, 0);
     for (int i = 0; i < frameNum; i++) pos.push_back(Init);
+//    for (int i = 0; i < 6; i++) {
+//        footage.load("a.mov");
+//        footage[0].play();
+//        footage[0].setFrame(0);
+//    }
 }
 
 //--------------------------------------------------------------
@@ -30,13 +35,16 @@ void ofApp::draw(){
     string triggeredText = "triggered position";
     triggeredText +=  + '\n';
     for (int i = 0; i < triggeredPos.size(); i++)
-        triggeredText += ofToString(i + 1) + " : (" + ofToString(triggeredPos[i].x) + ", " + ofToString(triggeredPos[i].y)  + ", " + ofToString(triggeredPos[i].z) + ")" + "\n";
+        triggeredText += ofToString(i + 1) + " : (" + ofToString(triggeredPos[i].x) + ", " + ofToString(triggeredPos[i].y)  + ", " + ofToString(triggeredPos[i].z) + ", " + ofToString(triggeredPos[i].w) + ")" + "\n";
     ofDrawBitmapStringHighlight(triggeredText, 170, 20);
     /*triggered circle*/
     ofSetColor(0, 0, 255, 50);
     for (int i = 0; i < triggeredPos.size(); i++) {
         ofDrawCircle(triggeredPos[i].x, triggeredPos[i].y, 10);
     }
+    
+    /*---------------draw---------------*/
+    
 }
 
 //--------------------------------------------------------------
@@ -65,7 +73,8 @@ void ofApp::mousePressed(int x, int y, int button){
     pos.push_back(mouse);
     if (pos.size() >= frameNum) pos.erase(pos.begin());
     if (!triggeredPos.size() ||
-        (pos.at(frameNum - 2) != ofVec2f(0, 0) && (abs(pos.back().x - pos.at(frameNum - 2).x) > triggerRange || abs(pos.back().y - pos.at(frameNum - 2).y) > triggerRange))) triggeredPos.push_back(pos.back());
+        (pos.at(frameNum - 2) != ofVec2f(0, 0) && (abs(pos.back().x - pos.at(frameNum - 2).x) > triggerRange || abs(pos.back().y - pos.at(frameNum - 2).y) > triggerRange)))
+        triggeredPos.push_back(ofVec4f(pos.back().x, pos.back().y, 0, int(ofRandom(6))));
     
     for (int i = 0; i < triggeredPos.size(); i++) {
         

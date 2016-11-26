@@ -20,11 +20,26 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        void drawFootage(int num, int x, int y);
+		
     vector<ofVec2f> pos;
-    vector<ofVec3f> triggeredPos;
+    vector<ofVec4f> triggeredPos;
     const int   frameNum = 30,
     triggerRange = 30;
     float footageframeNum;
+    ofVideoPlayer footage;
 };

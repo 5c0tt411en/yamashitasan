@@ -23,5 +23,8 @@ class ofApp : public ofBaseApp{
 		
     
     vector<ofVec2f> pos;
-    const int frameNum = 30;
+    vector<ofVec3f> triggeredPos;
+    const int   frameNum = 30,
+    triggerRange = 30;
+    float footageframeNum;
 };
